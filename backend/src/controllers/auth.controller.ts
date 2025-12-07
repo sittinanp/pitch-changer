@@ -26,8 +26,20 @@ export async function loginController(req: Request, res: Response){
     const login_data : LoginDTO = {
       username: req.body.username,
       password: req.body.password,
+      ip: req.ip,
+      user_agent : req.get("User-Agent") || undefined,
     };
-    const account = await login(login_data);
+    const {refreshToken , ...account} = await login(login_data);
+
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax" as "lax" | "strict" | "none",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    };
+
+    res.cookie("refreshToken", refreshToken, cookieOptions);
 
     return HttpResponse.ok(res,"Login successfully", account);
   } catch (error: any) {

@@ -54,8 +54,8 @@ export async function login( login_data : LoginDTO ) {
             account_id: account.id,
             token_hash: hashedRefreshToken,
             expires_at: new Date(Date.now() + Number(process.env.REFRESH_TOKEN_EXP_MS)),  
-            ip_address: "",         // optional
-            user_agent: "",         // optional
+            ip_address: login_data?.ip,         // optional
+            user_agent: login_data?.user_agent,         // optional
             revoked: false,
         },
     });
@@ -67,6 +67,7 @@ export async function login( login_data : LoginDTO ) {
             id: account.id,
             username: account.username,
             email: account.email,
+
         },
     };
 }

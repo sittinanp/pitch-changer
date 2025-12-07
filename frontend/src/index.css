@@ -1,0 +1,21 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+
+  color: white;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+  --bg : white;
+  --bg-gradient: linear-gradient(135deg, #1E3E62, #0B192C);
+}
+
+body{
+  margin:0px;
+}
+
+
