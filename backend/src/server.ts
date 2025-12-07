@@ -12,10 +12,6 @@ app.use(express.json());
 
 app.use("/auth", authRoutes);
 
-app.get("/test", (req: Request, res: Response) => {
-  res.send("Hello from TypeScript + Express kyyyu!");
-});
-
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
