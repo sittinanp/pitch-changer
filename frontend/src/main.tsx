@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 //Page Import
 import Login from './features/auth/pages/Login/LoginPage.tsx'
-import Home from './pages/Home/HomePage.tsx'
+import HomePage from './pages/Home/HomePage.tsx'
+import ProtectedRoute from '@components/ProtectedRoute.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -18,10 +19,10 @@ createRoot(document.getElementById('root')!).render(
      <Provider store={store}>
         <Router>
           <Routes>
-            <Route path="/" element={<App/>} />
-            <Route path='/Home' element={<Home/>}/>
-            <Route path="/login" element={<Login/>} />
-            <Route path="*" element={<Navigate to="/"/>} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<HomePage />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
      </Provider>
